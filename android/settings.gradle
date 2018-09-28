@@ -1,0 +1,3 @@
+rootProject.name = 'ReactNaviteKC'
+
+include ':app'
