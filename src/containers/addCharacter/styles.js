@@ -3,23 +3,19 @@ import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
     container: { 
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center', 
-        width: '100%',
-        height: '100%',
+        flex: 1,
         backgroundColor: 'rgb(255, 77, 77)',
     },
     text: {
+        margin: 10,
         color: '#2c3e50',
         fontSize: 20,
         fontWeight: 'bold'
     },
     input: {
-        marginTop: 10,
-        marginBottom: 10,
+        margin: 10,
+        width: '90%',
         backgroundColor: '#2c3e50',
-        width: 200,
         color: 'white',
         fontSize: 20,
         textAlign: 'center',
@@ -27,5 +23,26 @@ export default StyleSheet.create({
         borderWidth: 2,
         borderColor: 'white',
         borderRadius: 20 ,
+    },
+    imageContainer: {
+        borderWidth: 1, 
+        borderColor: '#2c3e50',
+        borderRadius: 20,
+        height: 200,
+        width: '100%'
+    },
+    image: {
+        borderRadius: 20,
+        width: '100%',
+        height: '100%'
+    },
+    imageText: { 
+        color: 'white', 
+        fontWeight: 'bold',
+        position: 'absolute',
+        top: '46%',
+        textAlign: 'center',
+        left: 0,
+        right: 0,
     }
 })

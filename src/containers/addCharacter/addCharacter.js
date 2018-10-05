@@ -1,30 +1,58 @@
 
 
 import React from 'react';
-import { View, TextInput , Text} from 'react-native';
+import { View, TextInput , Text, TouchableOpacity, Image} from 'react-native';
 import styles from './styles';
+import ImagePicker from 'react-native-image-picker'
 
 export default class CharacterForm extends React.Component{
  
-  state = {
-    name: '',
-    films: '',
-  }
-//npm install --save react-native-image-picker -> para elegir fotos de librería
-//Hay que enlazarlo, para ello nos vamos Xcode, libraries -> Add filest to "project" -> Project -> node_modules -> react-native-image-picker -> ios -> .xcodeproj
-//Select root project (Xcode) -> Linked libraries -> + -> Select RNImagePicker.a
-//Add to info.plist
-/*<key>NSPhotoLibraryUsageDescription</key>
-    <string>$(PRODUCT_NAME) would like access to your photo gallery</string>
-    <key>NSCameraUsageDescription</key>
-    <string>$(PRODUCT_NAME) would like to use your camera</string>
-    <key>NSPhotoLibraryAddUsageDescription</key>
-    <string>$(PRODUCT_NAME) would like to save photos to your photo gallery</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>$(PRODUCT_NAME) would like to your microphone (for videos)</string>*/
- 
+    
+    constructor(props) {
+        super(props)
 
-    //Para Android leer -> https://github.com/react-community/react-native-image-picker
+       this.state = {
+                name: '',
+                films: '',
+                image: null,
+        }
+
+        this.options = {
+            title: 'Select Image',
+            maxWidth: 640,
+            maxHeight: 640,
+            storageOptions: {
+              skipBackup: true,
+              path: 'images'
+            }
+        };
+    }
+    
+    _onImagePickerTapped() {
+        ImagePicker.showImagePicker(this.options, (response) => {
+            if (response.uri && response.data) {
+              let preview = { uri: response.uri };
+              let data = 'data:image/jpeg;base64,' + response.data 
+              this.setState({
+                image: { preview, data }
+              });
+            }
+          });
+    }
+
+    _renderImageInput() {
+        const imageUri = this.state.image ? this.state.image.preview : null
+        const imageLabel = this.state.image ? 'Press to choose another image' : 'Press to choose an image'
+        return (
+            <View style={{marginTop: 20}}>
+                <TouchableOpacity style={styles.imageContainer} onPress={() => this._onImagePickerTapped()}>
+                    <Image source={imageUri} style={styles.image} resizeMode={'cover'} />
+                    <Text style={styles.imageText}>{imageLabel}</Text>
+                </TouchableOpacity>
+            </View>
+        )
+    }
+
   render() {
     return (
         <View style={styles.container}>
@@ -50,7 +78,9 @@ export default class CharacterForm extends React.Component{
                     placeholderTextColor="white"
                 />
             </View>
- 
+            <View style={{ paddingHorizontal: 20, paddingBottom: 40}}>
+                    { this._renderImageInput() }
+            </View>
         </View>
     )
   }
