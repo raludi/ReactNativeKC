@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { TouchableOpacity, Text, Image } from 'react-native'
 import styles from './styles'
+import ImageCharacter from '../widgets/image'
 
 export default class CharacterCell extends Component {
 
@@ -9,16 +10,17 @@ export default class CharacterCell extends Component {
     }
 
     render() {
-        const { path, extension } = this.props.character.thumbnail
-        const imageURL = path + '/portrait_medium.' + extension; 
+        const { character } = this.props;
+        const { path, extension } = character.thumbnail
         return (
             <TouchableOpacity 
+                onPress={ () => this.props.onPressedCell(character) }
                 style={styles.cellContainer}
             >
-                <Image
-                    source={{uri: imageURL}}
-                    style={{ width: '100%', height: '100%'}}
-                    resizeMode={'cover'}
+                <ImageCharacter
+                    url={path}
+                    extension={extension}
+                    styles={{ width: '100%', height: '100%'}}
                 />
             </TouchableOpacity>
         )
