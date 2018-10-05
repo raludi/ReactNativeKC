@@ -1,13 +1,18 @@
 import React from 'react';
-import { View, FlatList, ActivityIndicator } from 'react-native';
+import { View, FlatList, ActivityIndicator, Animated } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import styles from './styles';
 import  CharacterCell from '../../components/cells';
 import  { connect } from 'react-redux';
 import { actions as CharactersAction, getCharacters } from '../../redux/modules/characters';
 
+const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
+
 export class CharacterList extends React.Component {
 
+    state = {
+        animatedItem: new Animated.Value(0)
+    }
     onPressedCell = (value) => {
         Actions.characterDetail({ character: value})
     }

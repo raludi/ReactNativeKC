@@ -8,7 +8,7 @@ export default class CharacterCell extends Component {
     static defaultProps = {
         character: null
     }
-
+    
     render() {
         const { character } = this.props;
         const { path, extension } = character.thumbnail

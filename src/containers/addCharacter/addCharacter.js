@@ -11,9 +11,9 @@ export default class CharacterForm extends React.Component{
     constructor(props) {
         super(props)
 
-       this.state = {
+        this.state = {
                 name: '',
-                films: '',
+                description: '',
                 image: null,
         }
 
@@ -22,22 +22,22 @@ export default class CharacterForm extends React.Component{
             maxWidth: 640,
             maxHeight: 640,
             storageOptions: {
-              skipBackup: true,
-              path: 'images'
+                skipBackup: true,
+                path: 'images'
             }
         };
     }
-    
+
     _onImagePickerTapped() {
         ImagePicker.showImagePicker(this.options, (response) => {
             if (response.uri && response.data) {
-              let preview = { uri: response.uri };
-              let data = 'data:image/jpeg;base64,' + response.data 
-              this.setState({
+                let preview = { uri: response.uri };
+                let data = 'data:image/jpeg;base64,' + response.data 
+                this.setState({
                 image: { preview, data }
-              });
+                });
             }
-          });
+            });
     }
 
     _renderImageInput() {
@@ -53,35 +53,35 @@ export default class CharacterForm extends React.Component{
         )
     }
 
-  render() {
-    return (
-        <View style={styles.container}>
-            <View>
-                <Text style={styles.text}>Name</Text>
-                <TextInput
-                    style= {styles.input}
-                    label= {'Character Name'}
-                    value= {this.state.name}
-                    onChangeText= { (name) => this.setState({name}) }
-                    placeholder='Write here'
-                    placeholderTextColor="white"
-                />
+    render() {
+        return (
+            <View style={styles.container}>
+                <View>
+                    <Text style={styles.text}>Name</Text>
+                    <TextInput
+                        style= {styles.input}
+                        label= {'Character Name'}
+                        value= {this.state.name}
+                        onChangeText= { (name) => this.setState({name}) }
+                        placeholder='Write here'
+                        placeholderTextColor="white"
+                    />
+                </View>
+                <View>
+                    <Text style={styles.text}>Description</Text>
+                    <TextInput
+                        style= {styles.input}
+                        label= {'Number of films'}
+                        value= {this.state.description}
+                        onChangeText= { (description) => this.setState({description}) }
+                        placeholder='Write here'
+                        placeholderTextColor="white"
+                    />
+                </View>
+                <View style={{ paddingHorizontal: 20, paddingBottom: 40}}>
+                        { this._renderImageInput() }
+                </View>
             </View>
-            <View>
-                <Text style={styles.text}>Description</Text>
-                <TextInput
-                    style= {styles.input}
-                    label= {'Number of films'}
-                    value= {this.state.films}
-                    onChangeText= { (films) => this.setState({films}) }
-                    placeholder='Write here'
-                    placeholderTextColor="white"
-                />
-            </View>
-            <View style={{ paddingHorizontal: 20, paddingBottom: 40}}>
-                    { this._renderImageInput() }
-            </View>
-        </View>
-    )
-  }
+        )
+    }
 }
