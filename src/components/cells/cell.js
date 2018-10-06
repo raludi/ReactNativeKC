@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { TouchableOpacity, Text, Image } from 'react-native'
 import styles from './styles'
-import ImageCharacter from '../widgets/image'
+import ImageCharacter from '../picture'
 
 export default class CharacterCell extends Component {
 
@@ -20,7 +20,7 @@ export default class CharacterCell extends Component {
                 <ImageCharacter
                     url={path}
                     extension={extension}
-                    styles={{ width: '100%', height: '100%'}}
+                    styles={styles.image}
                 />
             </TouchableOpacity>
         )

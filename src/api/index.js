@@ -1,11 +1,14 @@
 
 import marvelApi from 'marvel-comics-api';
 
+const PUBLIC_KEY='';
+const PRIVATE_KEY='';
+
 export const fetchCharacters = () => {
     return new Promise((resolve, reject) => {
         marvelApi('characters', {
-            publicKey: 'd0883d6cbeec97aef4bf31380ba9b402',
-            privateKey: '01c93fd0a2cdebf44b05423e5e49b4191e9f46d2',
+            publicKey: PUBLIC_KEY,
+            privateKey: PRIVATE_KEY,
             timeout: 4000,
             query: {
               limit: 50

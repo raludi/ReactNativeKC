@@ -1,21 +1,22 @@
 
 import { StyleSheet } from 'react-native'
+import * as Colors from '../../commons/colors'
 
 export default StyleSheet.create({
     container: { 
         flex: 1,
-        backgroundColor: 'rgb(255, 77, 77)',
+        backgroundColor: Colors.predefined.main,
     },
     text: {
         margin: 10,
-        color: '#2c3e50',
+        color: Colors.predefined.secondary,
         fontSize: 20,
         fontWeight: 'bold'
     },
     input: {
         margin: 10,
         width: '90%',
-        backgroundColor: '#2c3e50',
+        backgroundColor: Colors.predefined.secondary,
         color: 'white',
         fontSize: 20,
         textAlign: 'center',
@@ -26,7 +27,7 @@ export default StyleSheet.create({
     },
     imageContainer: {
         borderWidth: 1, 
-        borderColor: '#2c3e50',
+        borderColor: Colors.predefined.secondary,
         borderRadius: 20,
         height: 200,
         width: '100%'
